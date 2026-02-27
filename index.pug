@@ -1,7 +1,9 @@
 extends app
 
 block TIDORY
-  s_t3
-    div(class="h-screen flex justify-center text-center items-center")
-      include views/Header
+  div(class="min-h-screen flex flex-col")
+    include views/Header
+    main(class="flex-1 w-full max-w-screen-lg mx-auto px-4 py-8")
+      //- This is where list/article/page will go
+      block CONTENT
       include views/Bottom

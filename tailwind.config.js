@@ -8,7 +8,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: [
-          'SUIT',
+          'Pretendard',
           ...defaultTheme.fontFamily.sans
         ]
       }
