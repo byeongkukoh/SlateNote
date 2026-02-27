@@ -1,9 +1,14 @@
 extends app
 
 block TIDORY
-  div(class="min-h-screen flex flex-col")
+  div.min-h-screen.bg-slate-50.font-sans.text-slate-800(class="dark:bg-slate-900 dark:text-slate-100")
     include views/components/Header
-    main(class="flex-1 w-full max-w-screen-lg mx-auto px-4 py-8")
+    
+    main.max-w-1440px.mx-auto.px-4.py-8.flex.flex-col.gap-8(class="sm:px-6 lg:flex-row lg:gap-12")
+      include views/components/Sidebar
+      
       //- This is where list/article/page will go
+      include views/components/PostList
       include views/components/Article
+      
     include views/components/Footer

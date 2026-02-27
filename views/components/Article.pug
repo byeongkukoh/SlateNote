@@ -1,15 +1,49 @@
-s_article_rep
-  article(class="mb-16 relative")
-    header(class="mb-8 border-b border-zinc-200 dark:border-zinc-700 pb-4")
-      h1(class="text-3xl md:text-4xl font-extrabold text-zinc-900 dark:text-zinc-50 mb-4") [##_article_rep_title_##]
-      div(class="flex items-center text-sm text-zinc-500 dark:text-zinc-400 space-x-4")
-        span [##_article_rep_author_##]
-        span [##_article_rep_date_##]
-    
-    div(class="flex flex-col lg:flex-row lg:items-start lg:gap-12")
-      aside#toc-container(class="order-1 lg:order-2 w-full lg:w-64 lg:sticky lg:top-8 mb-8 lg:mb-0 shrink-0 border-l border-zinc-200 dark:border-zinc-800 pl-4 bg-zinc-50 dark:bg-zinc-800/20 lg:bg-transparent lg:dark:bg-transparent rounded-lg lg:rounded-none p-4 lg:p-0")
-        div(class="text-sm font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-widest mb-4") On this page
-        nav#toc(class="text-sm flex flex-col space-y-2 max-h-[50vh] lg:max-h-[80vh] overflow-y-auto")
+div(class="flex-1 w-full max-w-[1024px] min-w-0 mx-auto")
+  s_article_rep
+    s_permalink_article_rep
+      div.animate-in.fade-in.slide-in-from-bottom-4.duration-500.bg-white.rounded-2xl.shadow-sm.border.border-slate-100.overflow-hidden(class="dark:bg-slate-800 dark:border-slate-700")
+        
+        //- Post Header
+        div.relative.w-full(class="h-64 sm:h-80 md:h-[480px]")
+          s_article_rep_thumbnail
+            img.w-full.h-full.object-cover(src="[##_article_rep_thumbnail_raw_url_##]" alt="[##_article_rep_title_##]")
+          div.absolute.inset-0.bg-gradient-to-t.from-slate-900_90.via-slate-900_40.to-transparent
+          div.absolute.bottom-0.left-0.w-full.text-white(class="p-6 sm:p-12")
+            div.flex.items-center.gap-2.mb-4.text-sm.font-medium.text-indigo-200
+              a.px-3.py-1.bg-white_20.backdrop-blur.rounded-full.transition-colors(href="[##_article_rep_category_link_##]" class="hover:bg-white/30")
+                | [##_article_rep_category_##]
+            h1.text-3xl.font-bold.mb-6.leading-tight(class="sm:text-4xl lg:text-5xl")
+              | [##_article_rep_title_##]
+            div.flex.items-center.gap-4.text-sm.text-slate-300
+              span.flex.items-center.gap-1
+                i.fa-regular.fa-user
+                | [##_article_rep_author_##]
+              span.flex.items-center.gap-1
+                i.fa-regular.fa-calendar
+                | [##_article_rep_date_##]
+              span.flex.items-center.gap-1
+                i.fa-regular.fa-comment-dots
+                s_rp_count
+                  | [##_article_rep_rp_cnt_##]
 
-      div(class="order-2 lg:order-1 article-content tt_article_useless_p_margin flex-1 min-w-0")
-        | [##_article_rep_desc_##]
+        div(class="p-6 sm:p-12")
+          //- Post Content
+          div.flex.flex-col(class="lg:flex-row lg:items-start lg:gap-12")
+            div.order-2.article-content.tt_article_useless_p_margin.flex-1.min-w-0(class="lg:order-1")
+              | [##_article_rep_desc_##]
+
+            //- TOC container
+            aside#toc-container.order-1.w-full.mb-8.shrink-0.border-l.border-slate-200.pl-4.bg-slate-50.rounded-lg.p-4(class="lg:order-2 lg:w-64 lg:sticky lg:top-8 lg:mb-0 dark:border-slate-700 dark:bg-slate-800/20 lg:bg-transparent lg:dark:bg-transparent lg:rounded-none lg:p-0")
+              div.text-sm.font-bold.text-slate-500.uppercase.tracking-widest.mb-4(class="dark:text-slate-400") On this page
+              nav#toc.text-sm.flex.flex-col.space-y-2.overflow-y-auto(class="max-h-[50vh] lg:max-h-[80vh]")
+
+          //- Tags
+          s_tag_label
+            div.mt-16.flex.flex-wrap.gap-2
+              | [##_tag_label_rep_##]
+
+          //- Navigation to List
+          div.mt-12.flex.justify-center
+            button.flex.items-center.gap-2.px-8.py-4.bg-white.border.border-slate-200.text-slate-600.rounded-full.font-bold.transition-colors.shadow-sm(onclick="location.href='/'" class="hover:bg-slate-50 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-700")
+              i.fa-solid.fa-arrow-left
+              | 목록으로 돌아가기
