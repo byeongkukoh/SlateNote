@@ -1,10 +1,15 @@
 s_article_rep
-  article(class="mb-16")
+  article(class="mb-16 relative")
     header(class="mb-8 border-b border-zinc-200 dark:border-zinc-700 pb-4")
       h1(class="text-3xl md:text-4xl font-extrabold text-zinc-900 dark:text-zinc-50 mb-4") [##_article_rep_title_##]
       div(class="flex items-center text-sm text-zinc-500 dark:text-zinc-400 space-x-4")
         span [##_article_rep_author_##]
         span [##_article_rep_date_##]
     
-    div(class="article-content tt_article_useless_p_margin")
-      | [##_article_rep_desc_##]
+    div(class="flex flex-col lg:flex-row lg:items-start lg:gap-12")
+      aside#toc-container(class="order-1 lg:order-2 w-full lg:w-64 lg:sticky lg:top-8 mb-8 lg:mb-0 shrink-0 border-l border-zinc-200 dark:border-zinc-800 pl-4 bg-zinc-50 dark:bg-zinc-800/20 lg:bg-transparent lg:dark:bg-transparent rounded-lg lg:rounded-none p-4 lg:p-0")
+        div(class="text-sm font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-widest mb-4") On this page
+        nav#toc(class="text-sm flex flex-col space-y-2 max-h-[50vh] lg:max-h-[80vh] overflow-y-auto")
+
+      div(class="order-2 lg:order-1 article-content tt_article_useless_p_margin flex-1 min-w-0")
+        | [##_article_rep_desc_##]

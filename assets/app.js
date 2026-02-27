@@ -14,9 +14,11 @@
 import initThemeToggle from './js/theme.js'
 import initCodeBlocks from './js/codeblock.js'
 import initCallouts from './js/callout.js'
+import initTOC from './js/toc.js'
 
 document.addEventListener('DOMContentLoaded', () => {
   initThemeToggle()
   initCodeBlocks()
   initCallouts()
+  initTOC()
 })
