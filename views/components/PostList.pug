@@ -1,0 +1,21 @@
+s_list
+  div(class="mb-16")
+    h2(class="text-2xl font-bold mb-8 text-zinc-900 dark:text-zinc-50 border-b border-zinc-200 dark:border-zinc-800 pb-4")
+      | [##_list_conform_##] ([##_list_count_##])
+
+    div(class="space-y-12")
+      s_list_rep
+        article(class="group flex flex-col md:flex-row gap-6 items-start")
+          s_list_rep_thumbnail
+            a(href="[##_list_rep_link_##]" class="w-full md:w-48 shrink-0 overflow-hidden rounded-lg aspect-video md:aspect-square block")
+              img(src="[##_list_rep_thumbnail_##]" alt="[##_list_rep_title_##]" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300")
+          
+          div(class="flex flex-col flex-1")
+            h3(class="text-2xl font-bold text-zinc-900 dark:text-zinc-50 mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors")
+              a(href="[##_list_rep_link_##]") [##_list_rep_title_##]
+            p(class="text-zinc-600 dark:text-zinc-400 mb-4 line-clamp-3 leading-relaxed")
+              | [##_list_rep_summary_##]
+            div(class="mt-auto text-sm text-zinc-500 flex items-center space-x-2 font-medium")
+              span [##_list_rep_regdate_##]
+              span(class="w-1 h-1 rounded-full bg-zinc-300 dark:bg-zinc-700")
+              span [##_list_rep_author_##]
