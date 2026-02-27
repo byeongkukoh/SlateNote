@@ -1,6 +1,32 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import 'highlight.js/styles/atom-one-dark.css';
+
+@layer components {
+  .callout {
+    @apply border-l-4 rounded-r-lg p-4 my-6 bg-zinc-100 border-zinc-500 dark:bg-zinc-800/80 dark:border-zinc-500 text-zinc-800 dark:text-zinc-200;
+  }
+  .callout-title {
+    @apply text-base;
+  }
+  .callout-content p:last-child {
+    @apply mb-0;
+  }
+  
+  /* Types */
+  .callout-info { @apply bg-blue-50 border-blue-500 dark:bg-blue-900/20 dark:border-blue-500; }
+  .callout-info .callout-title { @apply text-blue-700 dark:text-blue-400; }
+
+  .callout-warning { @apply bg-yellow-50 border-yellow-500 dark:bg-yellow-900/20 dark:border-yellow-500; }
+  .callout-warning .callout-title { @apply text-yellow-700 dark:text-yellow-400; }
+
+  .callout-error, .callout-danger { @apply bg-red-50 border-red-500 dark:bg-red-900/20 dark:border-red-500; }
+  .callout-error .callout-title, .callout-danger .callout-title { @apply text-red-700 dark:text-red-400; }
+
+  .callout-success { @apply bg-green-50 border-green-500 dark:bg-green-900/20 dark:border-green-500; }
+  .callout-success .callout-title { @apply text-green-700 dark:text-green-400; }
+}
 @import './css/typography.css';
 
 .menu_toolbar {

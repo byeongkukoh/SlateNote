@@ -12,7 +12,11 @@
  * after import assets it will be contained in app.js
  */
 import initThemeToggle from './js/theme.js'
+import initCodeBlocks from './js/codeblock.js'
+import initCallouts from './js/callout.js'
 
 document.addEventListener('DOMContentLoaded', () => {
   initThemeToggle()
+  initCodeBlocks()
+  initCallouts()
 })

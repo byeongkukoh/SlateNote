@@ -18,6 +18,7 @@
     "pug-lint": "^2.7.0"
   },
   "dependencies": {
+    "highlight.js": "^11.11.1",
     "tailwindcss": "3.2.7",
     "tidory": "8.4.3"
   }
