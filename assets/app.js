@@ -11,6 +11,8 @@
  *
  * after import assets it will be contained in app.js
  */
-import Alpine from 'alpinejs'
+import initThemeToggle from './js/theme.js'
 
-window.Alpine = Alpine
+document.addEventListener('DOMContentLoaded', () => {
+  initThemeToggle()
+})

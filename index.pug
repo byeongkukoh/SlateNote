@@ -2,8 +2,8 @@ extends app
 
 block TIDORY
   div(class="min-h-screen flex flex-col")
-    include views/Header
+    include views/components/Header
     main(class="flex-1 w-full max-w-screen-lg mx-auto px-4 py-8")
       //- This is where list/article/page will go
       block CONTENT
-      include views/Bottom
+    include views/components/Bottom
