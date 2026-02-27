@@ -1,0 +1,14 @@
+-
+  const guidebook = [
+    { text: '시작하기', href: 'https://github.com/pronist/tidory/wiki/Getting-Started' },
+    { text: '템플릿', href: 'https://github.com/pronist/tidory/wiki/Templates' },
+    { text: '설정', href: 'https://github.com/pronist/tidory/wiki/Configuration' },
+    { text: '빌드 및 배포', href: 'https://github.com/pronist/tidory/wiki/Deployment' },
+    { text: '프레임워크', href: 'https://github.com/pronist/tidory/wiki/Frameworks' }
+  ];
+
+nav(class="mt-9")
+  ul(class="list-none")
+    each guide in guidebook
+      li(class="mx-4 inline-block")
+        a(href=guide.href class="text-base duration-200 pointer-events-auto decoration-0 text-gray-500 hover:text-black dark:text-zinc-300 dark:hover:text-zinc-50")=guide.text
