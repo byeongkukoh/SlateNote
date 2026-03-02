@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<skin>
+  <information>
+    <name>Devkuk Flow</name>
+    <version>0.0.1</version>
+    <description>기술 블로그에 적합한 Tistory 블로그 스킨</description>
+    <license>MIT License</license>
+  </information>
+  <author>
+    <name>Devkuk</name>
+    <homepage>https://devkuk.tistory.com</homepage>
+    <email>devkukoh@gmail.com</email>
+  </author>
+  <default>
+    <recentEntries>10</recentEntries>
+    <recentComments>10</recentComments>
+    <recentTrackbacks>10</recentTrackbacks>
+    <itemsOnPage>10</itemsOnPage>
+    <tree>
+      <color>000000</color>
+      <bgColor>ffffff</bgColor>
+      <activeColor>000000</activeColor>
+      <activeBgColor>eee</activeBgColor>
+      <labelLength>30</labelLength>
+      <showValue>1</showValue>
+    </tree>
+    <recentTags>
+      <color>000000</color>
+      <bgColor>ffffff</bgColor>
+      <activeColor>000000</activeColor>
+      <activeBgColor>eee</activeBgColor>
+    </recentTags>
+  </default>
+  <variables>
+    <variablegroup name="프로필 설정">
+      <variable>
+        <name>job-title</name>
+        <label>직책 / 포지션</label>
+        <type>STRING</type>
+        <option />
+        <default>Frontend Developer</default>
+        <description>사이드바 프로필 아래에 표시될 직책을 입력하세요.</description>
+      </variable>
+
+      <variable>
+        <name>github-link</name>
+        <label>GitHub 주소</label>
+        <type>STRING</type>
+        <option />
+        <default></default>
+        <description>예: https://github.com/username (비우면 숨김)</description>
+      </variable>
+      <variable>
+        <name>x-link</name>
+        <label>X(구 트위터) 주소</label>
+        <type>STRING</type>
+        <option />
+        <default></default>
+        <description>예: https://x.com/username (비우면 숨김)</description>
+      </variable>
+      <variable>
+        <name>linkedin-link</name>
+        <label>LinkedIn 주소</label>
+        <type>STRING</type>
+        <option />
+        <default></default>
+        <description>예: https://www.linkedin.com/in/username (비우면 숨김)</description>
+      </variable>
+      <variable>
+        <name>email-link</name>
+        <label>이메일</label>
+        <type>STRING</type>
+        <option />
+        <default></default>
+        <description>예: hello@example.com 또는 mailto:hello@example.com (비우면 숨김)</description>
+      </variable>
+      <variable>
+        <name>youtube-link</name>
+        <label>YouTube 주소</label>
+        <type>STRING</type>
+        <option />
+        <default></default>
+        <description>예: https://youtube.com/@channel (비우면 숨김)</description>
+      </variable>
+      <variable>
+        <name>instagram-link</name>
+        <label>Instagram 주소</label>
+        <type>STRING</type>
+        <option />
+        <default></default>
+        <description>예: https://instagram.com/username (비우면 숨김)</description>
+      </variable>
+      <variable>
+        <name>website-link</name>
+        <label>개인 웹사이트 주소</label>
+        <type>STRING</type>
+        <option />
+        <default></default>
+        <description>예: https://myportfolio.com (비우면 숨김)</description>
+      </variable>
+    </variablegroup>
+  </variables>
+</skin>
