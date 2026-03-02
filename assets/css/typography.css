@@ -1,33 +1,119 @@
 @layer base {
+  .tt_article_useless_p_margin {
+    @apply text-base leading-8;
+  }
+
   .tt_article_useless_p_margin h1 {
-    @apply text-3xl font-extrabold mt-12 mb-6 pb-2 border-b border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-zinc-50 leading-tight;
+    @apply text-3xl font-extrabold pb-3 border-b border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-zinc-50 leading-tight;
+    margin-top: 2rem !important;
+    margin-bottom: 2rem !important;
   }
   .tt_article_useless_p_margin h2 {
-    @apply text-2xl font-bold mt-10 mb-5 text-zinc-900 dark:text-zinc-50 leading-snug;
+    @apply text-2xl font-bold text-zinc-900 dark:text-zinc-50 leading-snug;
+    margin-top: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
   }
   .tt_article_useless_p_margin h3 {
-    @apply text-xl font-semibold mt-8 mb-4 text-zinc-800 dark:text-zinc-100 leading-snug;
+    @apply text-xl font-semibold text-zinc-800 dark:text-zinc-100 leading-snug;
+    margin-top: 1.25rem !important;
+    margin-bottom: 1.25rem !important;
   }
   .tt_article_useless_p_margin h4 {
-    @apply text-lg font-medium mt-6 mb-3 text-zinc-800 dark:text-zinc-100;
+    @apply text-lg font-medium text-zinc-800 dark:text-zinc-100;
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
   }
   .tt_article_useless_p_margin h5 {
-    @apply text-base font-medium mt-6 mb-3 text-zinc-800 dark:text-zinc-100;
+    @apply text-base font-medium text-zinc-800 dark:text-zinc-100;
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
   }
   .tt_article_useless_p_margin h6 {
-    @apply text-sm font-bold mt-6 mb-3 text-zinc-600 dark:text-zinc-400 uppercase tracking-wider;
+    @apply text-sm font-bold text-zinc-600 dark:text-zinc-400 uppercase tracking-wider;
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
   }
   .tt_article_useless_p_margin p {
-    @apply mb-5 leading-relaxed text-zinc-700 dark:text-zinc-300;
+    @apply leading-8 text-zinc-700 dark:text-zinc-300;
+    margin-bottom: 1.5rem !important;
   }
   .tt_article_useless_p_margin a {
-    @apply text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline underline-offset-2;
+    @apply text-blue-600 dark:text-blue-400 underline;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 0.16em;
+    font-weight: 500;
+    box-shadow: inset 0 -0.22em rgba(59, 130, 246, 0.14);
+    border-radius: 0.2rem;
+    transition: color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .tt_article_useless_p_margin a:hover {
+    @apply text-blue-800 dark:text-blue-300;
+    box-shadow: inset 0 -0.28em rgba(59, 130, 246, 0.22);
   }
   .tt_article_useless_p_margin ul {
-    @apply list-disc list-inside mb-6 pl-4 text-zinc-700 dark:text-zinc-300 space-y-2;
+    @apply list-disc list-outside text-zinc-700 dark:text-zinc-300;
+    margin-bottom: 1.5rem !important;
+    margin-left: 2rem !important; /* pl-8 대신 margin-left로 확실히 들여쓰기 */
+    padding-left: 0.5rem !important;
   }
   .tt_article_useless_p_margin ol {
-    @apply list-decimal list-inside mb-6 pl-4 text-zinc-700 dark:text-zinc-300 space-y-2;
+    @apply list-none text-zinc-700 dark:text-zinc-300;
+    margin-bottom: 1.5rem !important;
+    margin-left: 1rem !important; /* 들여쓰기 */
+    padding-left: 0 !important;
+    counter-reset: ol-counter;
+  }
+  .tt_article_useless_p_margin li {
+    @apply leading-8;
+    padding-left: 0.25rem !important;
+    margin-bottom: 0 !important;
+  }
+  .tt_article_useless_p_margin ul > li + li,
+  .tt_article_useless_p_margin ol > li + li {
+    margin-top: 0.75rem !important;
+  }
+  .tt_article_useless_p_margin ol > li {
+    @apply flex items-start;
+    gap: 0.75rem !important;
+    padding-left: 0 !important;
+    counter-increment: ol-counter;
+  }
+  .tt_article_useless_p_margin ol > li::before {
+    content: counter(ol-counter);
+    @apply flex-shrink-0 inline-flex items-center justify-center w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold mt-1;
+    min-width: 1.5rem;
+  }
+  .dark .tt_article_useless_p_margin ol > li::before {
+    @apply bg-indigo-500;
+  }
+  .tt_article_useless_p_margin li > p {
+    @apply mb-2;
+  }
+  .tt_article_useless_p_margin li > ul,
+  .tt_article_useless_p_margin li > ol {
+    margin-top: 0.75rem !important;
+    margin-bottom: 0 !important;
+  }
+  /* ol 안의 중첩 ul: flex 해제, 일반 disc 스타일 복구 */
+  .tt_article_useless_p_margin ol li > ul {
+    @apply list-disc pl-6;
+  }
+  .tt_article_useless_p_margin ol li > ul > li {
+    @apply flex-none pl-1;
+  }
+  .tt_article_useless_p_margin ol li > ul > li::before {
+    display: none;
+  }
+  /* 중첩 ol counter 리셋 */
+  .tt_article_useless_p_margin ol ol {
+    counter-reset: ol-counter;
+    @apply pl-0;
+  }
+  .tt_article_useless_p_margin ul > li::marker {
+    color: rgb(99 102 241);
+  }
+  .dark .tt_article_useless_p_margin ul > li::marker {
+    color: rgb(129 140 248);
   }
   .tt_article_useless_p_margin blockquote {
     @apply border-l-4 border-zinc-300 dark:border-zinc-600 pl-4 py-2 my-6 text-zinc-600 dark:text-zinc-400 bg-zinc-50 dark:bg-zinc-800/50 rounded-r-md;
@@ -37,13 +123,45 @@
     @apply max-w-full h-auto rounded-lg my-8 mx-auto shadow-sm;
   }
   .tt_article_useless_p_margin pre {
-    @apply my-8 rounded-lg overflow-x-auto text-sm bg-zinc-900 text-zinc-50 p-4 font-mono shadow-md;
+    @apply rounded-lg overflow-x-auto text-sm bg-zinc-900 text-zinc-50 p-4 font-mono shadow-md;
+    margin-top: 3rem !important;
+    margin-bottom: 3rem !important;
+  }
+  .code-block-wrapper pre {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding: 1rem 1.25rem !important;
+    box-sizing: border-box;
+  }
+  .code-block-wrapper pre code,
+  .code-block-wrapper .hljs {
+    display: block;
+    width: 100%;
+  }
+  .code-block-wrapper {
+    margin-top: 3rem !important;
+    margin-bottom: 3rem !important;
   }
   .tt_article_useless_p_margin code {
-    @apply bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-[0.875em] font-mono text-pink-600 dark:text-pink-400 break-words;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+    padding: 0.125rem 0.375rem !important; /* 위아래 약간, 좌우 넉넉히 */
+    margin: 0 0.125rem !important; /* 양옆 마진으로 띄우기 */
+    border-radius: 0.375rem !important;
+    background-color: rgba(161, 161, 170, 0.15) !important;
+    color: #db2777 !important;
+    font-size: 0.875em !important;
+    word-break: break-word !important;
+  }
+  .dark .tt_article_useless_p_margin code {
+    background-color: rgba(161, 161, 170, 0.2) !important;
+    color: #f472b6 !important;
   }
   .tt_article_useless_p_margin pre code {
-    @apply bg-transparent text-inherit p-0 rounded-none dark:text-inherit dark:bg-transparent text-[0.875em] break-normal;
+    background-color: transparent !important;
+    color: inherit !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    font-size: 0.875em !important;
   }
   .tt_article_useless_p_margin table {
     @apply w-full mb-8 border-collapse text-left text-sm;

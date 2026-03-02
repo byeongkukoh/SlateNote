@@ -11,14 +11,22 @@
  *
  * after import assets it will be contained in app.js
  */
+import './app.css'
 import initThemeToggle from './js/theme.js'
 import initCodeBlocks from './js/codeblock.js'
 import initCallouts from './js/callout.js'
 import initTOC from './js/toc.js'
-
+import initPostListPreview from './js/postlist.js'
+import initProfileLinks from './js/profile-links.js'
+import initAdminActions from './js/admin-actions.js'
+import initArticleScrollbar from './js/article-scrollbar.js'
 document.addEventListener('DOMContentLoaded', () => {
   initThemeToggle()
   initCodeBlocks()
   initCallouts()
   initTOC()
+  initPostListPreview()
+  initProfileLinks()
+  initAdminActions()
+  initArticleScrollbar()
 })

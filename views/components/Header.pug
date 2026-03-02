@@ -1,10 +1,8 @@
-header.sticky.top-0.z-40.w-full.bg-white_80.backdrop-blur-md.border-b.border-slate-200.shadow-sm.transition-all(class="dark:bg-slate-900/80 dark:border-slate-700")
-  div.max-w-1440px.mx-auto.px-4.h-16.flex.items-center.justify-between(class="sm:px-6")
-    div.flex.items-center.gap-4
+header(class="sticky top-0 z-40 w-full bg-white/80 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all dark:bg-slate-900/80 dark:border-slate-700")
+  nav(class="max-w-[1440px] mx-auto px-4 h-16 flex items-center justify-between sm:px-6")
+    .flex.items-center.gap-4
       include Header/Title
-    div.flex.items-center.gap-4
-      button.hidden.text-sm.font-semibold.text-indigo-600.bg-indigo-50.px-4.py-2.rounded-full.transition-colors(class="sm:block hover:bg-indigo-100 dark:bg-indigo-900/30 dark:text-indigo-400 dark:hover:bg-indigo-900/50")
-        | 헤딩 크기 확인
+    .flex.items-center.gap-4
       button.p-2.text-slate-500.transition-colors.hidden(class="hover:text-slate-800 sm:block dark:text-slate-400 dark:hover:text-slate-200")
         i.fa-solid.fa-search
       include Header/DarkModeToggle

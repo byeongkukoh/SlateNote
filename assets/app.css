@@ -4,6 +4,12 @@
 @import 'highlight.js/styles/atom-one-dark.css';
 
 @layer components {
+  /* highlight.js background override for transparent pre */
+  .hljs {
+    background: transparent !important;
+    padding: 0 !important;
+  }
+
   .callout {
     @apply border-l-4 rounded-r-lg p-4 my-6 bg-zinc-100 border-zinc-500 dark:bg-zinc-800/80 dark:border-zinc-500 text-zinc-800 dark:text-zinc-200;
   }
@@ -26,6 +32,81 @@
 
   .callout-success { @apply bg-green-50 border-green-500 dark:bg-green-900/20 dark:border-green-500; }
   .callout-success .callout-title { @apply text-green-700 dark:text-green-400; }
+
+  .category-list .category_list {
+    @apply space-y-1;
+  }
+
+  .category-list .category_list,
+  .category-list .sub_category_list {
+    @apply list-none m-0 p-0;
+  }
+
+  .category-list .category_list > li > a,
+  .category-list .sub_category_list > li > a {
+    @apply flex items-center justify-between py-2 px-3 rounded-lg text-sm text-slate-600 transition-colors hover:bg-slate-50 hover:text-indigo-600 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-indigo-400;
+  }
+
+  .category-list .sub_category_list {
+    @apply mt-1 ml-3 pl-2 border-l border-slate-200 dark:border-slate-700;
+  }
+
+  .category-list .c_cnt {
+    @apply text-xs text-slate-400;
+  }
+
+  .no-more-prev,
+  .no-more-next {
+    @apply opacity-40 pointer-events-none;
+  }
+
+  .paging .selected {
+    @apply bg-indigo-600 text-white border-indigo-600 dark:bg-indigo-500 dark:border-indigo-500 dark:text-slate-50;
+  }
+
+  .article-scroll-pane {
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+    scrollbar-gutter: stable;
+  }
+
+  .article-scroll-pane::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+  }
+
+  .article-scroll-pane::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+
+  .article-scroll-pane::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .article-scroll-pane.is-scrolling,
+  .article-scroll-pane:hover,
+  .article-scroll-pane:focus-within {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(148, 163, 184, 0.9) transparent;
+  }
+
+  .article-scroll-pane.is-scrolling::-webkit-scrollbar,
+  .article-scroll-pane:hover::-webkit-scrollbar,
+  .article-scroll-pane:focus-within::-webkit-scrollbar {
+    width: 9px;
+  }
+
+  .article-scroll-pane.is-scrolling::-webkit-scrollbar-thumb,
+  .article-scroll-pane:hover::-webkit-scrollbar-thumb,
+  .article-scroll-pane:focus-within::-webkit-scrollbar-thumb {
+    background-color: rgba(148, 163, 184, 0.9);
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
 }
 @import './css/typography.css';
 

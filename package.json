@@ -4,7 +4,7 @@
     "start": "tidory start",
     "preview": "tidory preview",
     "preview:old": "tidory preview --old",
-    "production": "tidory production",
+    "production": "tidory production && cp index.xml dist/",
     "store": "tidory store",
     "deploy": "tidory deploy",
     "lint": "eslint && pug-lint ."

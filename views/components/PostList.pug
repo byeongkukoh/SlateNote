@@ -1,42 +1,39 @@
 s_list
-  div.animate-in.fade-in.slide-in-from-bottom-4.duration-500
+  .animate-in.fade-in.slide-in-from-bottom-4.duration-500
     h2.text-2xl.font-bold.mb-6.flex.items-center.gap-2(class="dark:text-slate-100")
       | 최신 글
-      span.text-sm.font-normal.text-slate-500.bg-slate-200.px-2.py-0_5.rounded-full(class="dark:bg-slate-700 dark:text-slate-300") [##_count_##]
+      span(class="text-sm font-normal text-slate-500 bg-slate-200 px-2 py-0.5 rounded-full dark:bg-slate-700 dark:text-slate-300") [##_list_count_##]
 
-    div.flex.flex-col.border-t-2.border-slate-800.mt-4.bg-white.rounded-xl.shadow-sm.px-4.overflow-hidden(class="sm:px-8 dark:bg-slate-800 dark:border-slate-400")
-      s_article_rep
-        s_index_article_rep
-          article.py-10.border-b.border-slate-100.transition-colors.cursor-pointer.group.-mx-4.px-4(class="last:border-0 hover:bg-slate-50/50 sm:-mx-8 sm:px-8 dark:border-slate-700 dark:hover:bg-slate-700/50" onclick="location.href='[##_article_rep_link_##]'")
-            div.flex.flex-col.justify-between.gap-2.mb-4(class="sm:flex-row sm:items-center")
-              span.text-sm.font-bold.text-indigo-600(class="dark:text-indigo-400")
-                | [##_article_rep_category_##]
-              div.flex.items-center.gap-3.text-xs.text-slate-400.font-medium
-                span.flex.items-center.gap-1
-                  i.fa-regular.fa-calendar
-                  | [##_article_rep_date_##]
-                span.flex.items-center.gap-1
-                  i.fa-solid.fa-heart
-                  | 0
-                s_rp_count
-                  span.flex.items-center.gap-1
-                    i.fa-regular.fa-comment-dots
-                    | [##_article_rep_rp_cnt_##]
-            
-            h3.text-2xl.font-bold.mb-4.text-slate-800.transition-colors.leading-tight(class="sm:text-3xl group-hover:text-indigo-600 dark:text-slate-100 dark:group-hover:text-indigo-400")
-              | [##_article_rep_title_##]
-            
-            p.text-slate-500.text-base.line-clamp-2.leading-relaxed(class="dark:text-slate-400")
-              | [##_article_rep_summary_##]
+    .flex.flex-col.border-t-2.border-slate-800.mt-4.bg-white.rounded-xl.shadow-sm.px-4.overflow-hidden(class="sm:px-8 dark:bg-slate-800 dark:border-slate-400")
+      s_list_rep
+        article.py-10.border-b.border-slate-100.transition-colors.cursor-pointer.group.-mx-4.px-4(class="last:border-0 hover:bg-slate-50/50 sm:-mx-8 sm:px-8 dark:border-slate-700 dark:hover:bg-slate-700/50" onclick="location.href='[##_list_rep_link_##]'")
+          .flex.flex-col.justify-between.gap-2.mb-4(class="sm:flex-row sm:items-center")
+            span.text-sm.font-bold.text-indigo-600(class="dark:text-indigo-400")
+              | [##_list_rep_category_##]
+            .flex.items-center.gap-3.text-xs.text-slate-400.font-medium
+              span.flex.items-center.gap-1
+                i.fa-regular.fa-calendar
+                | [##_list_rep_regdate_##]
+              span.flex.items-center.gap-1
+                i.fa-solid.fa-heart
+                | 0
+              span.flex.items-center.gap-1
+                i.fa-regular.fa-user
+                | [##_list_rep_author_##]
+          h3.post-list-title.text-lg.font-bold.mb-4.text-slate-800.transition-colors.leading-tight(class="sm:text-xl group-hover:text-indigo-600 dark:text-slate-100 dark:group-hover:text-indigo-400")
+            | [##_list_rep_title_##]
+
+          p.post-list-summary.text-slate-500.text-base.leading-relaxed(class="dark:text-slate-400")
+            | [##_list_rep_summary_##]
 
   //- Pagination
   s_paging
-    div.mt-12.flex.justify-center
-      div.flex.space-x-2
-        a.w-10.h-10.rounded-lg.flex.items-center.justify-center.bg-white.border.border-slate-200.text-slate-500.transition-colors(href="[##_prev_page_##]" class="hover:bg-slate-50 [##_no_more_prev_##] dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400 dark:hover:bg-slate-700")
+    .mt-12.flex.justify-center
+      .flex.space-x-2.paging
+        a.w-10.h-10.rounded-lg.flex.items-center.justify-center.bg-white.border.border-slate-200.text-slate-500.transition-colors([##_prev_page_##] class="hover:bg-slate-50 [##_no_more_prev_##] dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400 dark:hover:bg-slate-700")
           i.fa-solid.fa-chevron-left
         s_paging_rep
-          a.w-10.h-10.rounded-lg.flex.items-center.justify-center.bg-white.border.border-slate-200.text-slate-600.transition-colors(href="[##_paging_rep_link_##]" class="hover:bg-slate-50 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-700")
+          a.w-10.h-10.rounded-lg.flex.items-center.justify-center.bg-white.border.border-slate-200.text-slate-600.transition-colors([##_paging_rep_link_##] class="hover:bg-slate-50 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-700")
             | [##_paging_rep_link_num_##]
-        a.w-10.h-10.rounded-lg.flex.items-center.justify-center.bg-white.border.border-slate-200.text-slate-500.transition-colors(href="[##_next_page_##]" class="hover:bg-slate-50 [##_no_more_next_##] dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400 dark:hover:bg-slate-700")
+        a.w-10.h-10.rounded-lg.flex.items-center.justify-center.bg-white.border.border-slate-200.text-slate-500.transition-colors([##_next_page_##] class="hover:bg-slate-50 [##_no_more_next_##] dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400 dark:hover:bg-slate-700")
           i.fa-solid.fa-chevron-right

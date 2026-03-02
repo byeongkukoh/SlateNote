@@ -2,12 +2,27 @@ export default function initTOC() {
   const content = document.querySelector('.tt_article_useless_p_margin');
   const tocContainer = document.getElementById('toc');
   const tocWrapper = document.getElementById('toc-container');
+  const tocToggle = document.getElementById('toc-toggle');
+  const tocClose = document.getElementById('toc-close');
   
-  if (!content || !tocContainer) return;
+  if (!content || !tocContainer || !tocWrapper || !tocToggle) return;
+
+  const setOpen = (open) => {
+    tocWrapper.classList.toggle('opacity-0', !open);
+    tocWrapper.classList.toggle('translate-y-2', !open);
+    tocWrapper.classList.toggle('pointer-events-none', !open);
+    tocWrapper.classList.toggle('opacity-100', open);
+    tocWrapper.classList.toggle('translate-y-0', open);
+    tocWrapper.classList.toggle('pointer-events-auto', open);
+    tocToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  };
+
+  setOpen(false);
   
   const headings = Array.from(content.querySelectorAll('h1, h2, h3, h4, h5, h6'));
   if (headings.length === 0) {
-    if (tocWrapper) tocWrapper.style.display = 'none';
+    tocWrapper.style.display = 'none';
+    tocToggle.style.display = 'none';
     return;
   }
   
@@ -23,9 +38,17 @@ export default function initTOC() {
     }
     
     const link = document.createElement('a');
+    const rawTitle = heading.textContent.trim();
+    const maxTitleLength = 22;
+    const shortTitle = rawTitle.length > maxTitleLength
+      ? `${rawTitle.slice(0, maxTitleLength).trimEnd()}...`
+      : rawTitle;
+
     link.href = `#${heading.id}`;
-    link.textContent = heading.textContent;
-    link.className = 'toc-link text-zinc-500 dark:text-zinc-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors block py-0.5 break-words';
+    link.textContent = shortTitle;
+    link.title = rawTitle;
+    link.className = 'toc-link text-xs text-zinc-500 dark:text-zinc-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors block py-0.5 break-words';
+    link.addEventListener('click', () => setOpen(false));
     
     if (currentTopHeaderLevel === null) {
       currentTopHeaderLevel = level;
@@ -66,4 +89,17 @@ export default function initTOC() {
   });
   
   headings.forEach(h => observer.observe(h));
+
+  tocToggle.addEventListener('click', () => {
+    const willOpen = tocToggle.getAttribute('aria-expanded') !== 'true';
+    setOpen(willOpen);
+  });
+
+  if (tocClose) {
+    tocClose.addEventListener('click', () => setOpen(false));
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setOpen(false);
+  });
 }

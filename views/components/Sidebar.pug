@@ -1,33 +1,65 @@
-aside.hidden.w-340px.flex-shrink-0(class="lg:block")
-  div.sticky.top-24.space-y-8
+aside.hidden.flex-shrink-0(class="lg:block lg:w-[340px]")
+  .sticky.top-24.space-y-8
     //- Profile Widget
-    div.bg-white.rounded-2xl.p-6.shadow-sm.border.border-slate-100.text-center(class="dark:bg-slate-800 dark:border-slate-700")
-      div.relative.w-24.h-24.mx-auto.rounded-full.overflow-hidden.mb-4.border-2.border-slate-50.ring-4.ring-indigo-50(class="dark:border-slate-700 dark:ring-indigo-900/30")
+    .bg-white.rounded-2xl.p-6.shadow-sm.border.border-slate-100.text-center(class="dark:bg-slate-800 dark:border-slate-700")
+      .relative.w-24.h-24.mx-auto.rounded-full.overflow-hidden.mb-4.border-2.border-slate-50.ring-4.ring-indigo-50(class="dark:border-slate-700 dark:ring-indigo-900/30")
         img.w-full.h-full.object-cover(src="[##_image_##]" alt="Profile")
       h3.font-bold.text-lg.text-slate-800(class="dark:text-slate-100") [##_blogger_##]
-      p.text-xs.text-indigo-600.font-medium.mb-3(class="dark:text-indigo-400") Frontend Developer
+      p.text-xs.text-indigo-600.font-medium.mb-3(class="dark:text-indigo-400")
+        s_if_var_job-title
+          | [##_var_job-title_##]
+        s_not_var_job-title
+          | [##_var_jobTitle_##]
       p.text-sm.text-slate-500.mb-6.leading-relaxed(class="dark:text-slate-400")
         | [##_desc_##]
-      div.flex.justify-center.gap-3
-        a.w-8.h-8.rounded-full.bg-slate-50.flex.items-center.justify-center.text-slate-400.transition-colors(href="#" class="hover:text-slate-800 hover:bg-slate-100 dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-slate-300 dark:hover:text-slate-100")
-          i.fa-brands.fa-github
-        a.w-8.h-8.rounded-full.bg-slate-50.flex.items-center.justify-center.text-slate-400.transition-colors(href="#" class="hover:text-blue-400 hover:bg-slate-100 dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-slate-300 dark:hover:text-blue-400")
-          i.fa-brands.fa-twitter
-        a.w-8.h-8.rounded-full.bg-slate-50.flex.items-center.justify-center.text-slate-400.transition-colors(href="#" class="hover:text-red-500 hover:bg-slate-100 dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-slate-300 dark:hover:text-red-400")
-          i.fa-solid.fa-envelope
-
+      .flex.justify-center.flex-wrap.gap-3
+        s_if_var_github-link
+          a.w-8.h-8.rounded-full.bg-slate-50.flex.items-center.justify-center.text-slate-400.transition-colors(href="[##_var_github-link_##]" data-profile-link="true" target="_blank" rel="noopener noreferrer" class="hover:text-slate-800 hover:bg-slate-100 dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-slate-300 dark:hover:text-slate-100")
+            i.fa-brands.fa-github
+        s_not_var_github-link
+          s_if_var_githubLink
+            a.w-8.h-8.rounded-full.bg-slate-50.flex.items-center.justify-center.text-slate-400.transition-colors(href="[##_var_githubLink_##]" data-profile-link="true" target="_blank" rel="noopener noreferrer" class="hover:text-slate-800 hover:bg-slate-100 dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-slate-300 dark:hover:text-slate-100")
+              i.fa-brands.fa-github
+        s_if_var_x-link
+          a.w-8.h-8.rounded-full.bg-slate-50.flex.items-center.justify-center.text-slate-400.transition-colors(href="[##_var_x-link_##]" data-profile-link="true" target="_blank" rel="noopener noreferrer" class="hover:text-zinc-900 hover:bg-slate-100 dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-slate-300 dark:hover:text-zinc-100")
+            svg(class="w-3.5 h-3.5" viewBox="0 0 1200 1227" aria-hidden="true" fill="currentColor")
+              path(d="M714.163 519.284 1160.89 0h-105.86L667.137 450.887 357.328 0H0l468.492 681.821L0 1226.37h105.866l409.61-476.152 327.196 476.152H1200L714.137 519.284zM569.165 687.828l-47.468-67.894L143.65 79.694h162.604l305.203 436.67 47.468 67.894 396.2 566.721H892.52L569.165 687.828z")
+        s_not_var_x-link
+          s_if_var_twitterLink
+            a.w-8.h-8.rounded-full.bg-slate-50.flex.items-center.justify-center.text-slate-400.transition-colors(href="[##_var_twitterLink_##]" data-profile-link="true" target="_blank" rel="noopener noreferrer" class="hover:text-zinc-900 hover:bg-slate-100 dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-slate-300 dark:hover:text-zinc-100")
+              svg(class="w-3.5 h-3.5" viewBox="0 0 1200 1227" aria-hidden="true" fill="currentColor")
+                path(d="M714.163 519.284 1160.89 0h-105.86L667.137 450.887 357.328 0H0l468.492 681.821L0 1226.37h105.866l409.61-476.152 327.196 476.152H1200L714.137 519.284zM569.165 687.828l-47.468-67.894L143.65 79.694h162.604l305.203 436.67 47.468 67.894 396.2 566.721H892.52L569.165 687.828z")
+        s_if_var_linkedin-link
+          a.w-8.h-8.rounded-full.bg-slate-50.flex.items-center.justify-center.text-slate-400.transition-colors(href="[##_var_linkedin-link_##]" data-profile-link="true" target="_blank" rel="noopener noreferrer" class="hover:text-sky-600 hover:bg-slate-100 dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-slate-300 dark:hover:text-sky-400")
+            i.fa-brands.fa-linkedin-in
+        s_if_var_email-link
+          a.w-8.h-8.rounded-full.bg-slate-50.flex.items-center.justify-center.text-slate-400.transition-colors(href="[##_var_email-link_##]" data-profile-link="true" data-email-link="true" class="hover:text-red-500 hover:bg-slate-100 dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-slate-300 dark:hover:text-red-400")
+            i.fa-solid.fa-envelope
+        s_not_var_email-link
+          s_if_var_emailAddress
+            a.w-8.h-8.rounded-full.bg-slate-50.flex.items-center.justify-center.text-slate-400.transition-colors(href="[##_var_emailAddress_##]" data-profile-link="true" data-email-link="true" class="hover:text-red-500 hover:bg-slate-100 dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-slate-300 dark:hover:text-red-400")
+              i.fa-solid.fa-envelope
+        s_if_var_youtube-link
+          a.w-8.h-8.rounded-full.bg-slate-50.flex.items-center.justify-center.text-slate-400.transition-colors(href="[##_var_youtube-link_##]" data-profile-link="true" target="_blank" rel="noopener noreferrer" class="hover:text-red-600 hover:bg-slate-100 dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-slate-300 dark:hover:text-red-400")
+            i.fa-brands.fa-youtube
+        s_if_var_instagram-link
+          a.w-8.h-8.rounded-full.bg-slate-50.flex.items-center.justify-center.text-slate-400.transition-colors(href="[##_var_instagram-link_##]" data-profile-link="true" target="_blank" rel="noopener noreferrer" class="hover:text-pink-500 hover:bg-slate-100 dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-slate-300 dark:hover:text-pink-400")
+            i.fa-brands.fa-instagram
+        s_if_var_website-link
+          a.w-8.h-8.rounded-full.bg-slate-50.flex.items-center.justify-center.text-slate-400.transition-colors(href="[##_var_website-link_##]" data-profile-link="true" target="_blank" rel="noopener noreferrer" class="hover:text-indigo-500 hover:bg-slate-100 dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-slate-300 dark:hover:text-indigo-400")
+            i.fa-solid.fa-link
     //- Category Widget
-    div.bg-white.rounded-2xl.p-6.shadow-sm.border.border-slate-100(class="dark:bg-slate-800 dark:border-slate-700")
+    .bg-white.rounded-2xl.p-6.shadow-sm.border.border-slate-100(class="dark:bg-slate-800 dark:border-slate-700")
       h4.font-bold.text-slate-800.mb-4.pb-2.border-b.border-slate-100.flex.items-center.gap-2(class="dark:text-slate-100 dark:border-slate-700")
         | 카테고리
-      div.category-list.text-sm(class="dark:text-slate-300")
+      .category-list.text-sm(class="dark:text-slate-300")
         | [##_category_list_##]
 
     //- Tags Widget
-    div.bg-white.rounded-2xl.p-6.shadow-sm.border.border-slate-100(class="dark:bg-slate-800 dark:border-slate-700")
+    .bg-white.rounded-2xl.p-6.shadow-sm.border.border-slate-100(class="dark:bg-slate-800 dark:border-slate-700")
       h4.font-bold.text-slate-800.mb-4.pb-2.border-b.border-slate-100(class="dark:text-slate-100 dark:border-slate-700")
         | 인기 태그
-      div.flex.flex-wrap.gap-2
+      .flex.flex-wrap.gap-2
         s_random_tags
           a.px-3.py-1.bg-slate-50.text-slate-600.text-xs.rounded-full.border.border-slate-100.transition-colors(href="[##_tag_link_##]" class="hover:bg-indigo-50 hover:text-indigo-600 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-300 dark:hover:bg-indigo-900/30 dark:hover:text-indigo-400")
             | # [##_tag_name_##]

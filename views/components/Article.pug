@@ -1,48 +1,56 @@
 s_article_rep
   s_permalink_article_rep
-    div.animate-in.fade-in.slide-in-from-bottom-4.duration-500.bg-white.rounded-2xl.shadow-sm.border.border-slate-100.overflow-hidden(class="dark:bg-slate-800 dark:border-slate-700")
-      
+    .article-scroll-pane.animate-in.fade-in.slide-in-from-bottom-4.duration-500.bg-white.rounded-2xl.shadow-sm.border.border-slate-100.overflow-hidden(class="dark:bg-slate-800 dark:border-slate-700 lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto lg:overscroll-contain")
+
       //- Post Header
-      div.relative.w-full(class="h-64 sm:h-80 md:h-[480px]")
+      .relative.w-full(class="h-52 sm:h-64 md:h-[340px]")
         s_article_rep_thumbnail
           img.w-full.h-full.object-cover(src="[##_article_rep_thumbnail_raw_url_##]" alt="[##_article_rep_title_##]")
-        div.absolute.inset-0.bg-gradient-to-t.from-slate-900_90.via-slate-900_40.to-transparent
-        div.absolute.bottom-0.left-0.w-full.text-white(class="p-6 sm:p-12")
-          div.flex.items-center.gap-2.mb-4.text-sm.font-medium.text-indigo-200
-            a.px-3.py-1.bg-white_20.backdrop-blur.rounded-full.transition-colors(href="[##_article_rep_category_link_##]" class="hover:bg-white/30")
+        .absolute.inset-0(class="bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent")
+        .absolute.bottom-0.left-0.w-full.text-white(class="p-6 sm:p-12")
+          .flex.items-center.gap-2.mb-4.text-sm.font-medium.text-indigo-200
+            a.px-3.py-1.backdrop-blur.rounded-full.transition-colors([##_article_rep_category_link_##] class="bg-white/20 hover:bg-white/30")
               | [##_article_rep_category_##]
           h1.text-3xl.font-bold.mb-6.leading-tight(class="sm:text-4xl lg:text-5xl")
             | [##_article_rep_title_##]
-          div.flex.items-center.gap-4.text-sm.text-slate-300
-            span.flex.items-center.gap-1
-              i.fa-regular.fa-user
-              | [##_article_rep_author_##]
-            span.flex.items-center.gap-1
-              i.fa-regular.fa-calendar
-              | [##_article_rep_date_##]
-            span.flex.items-center.gap-1
-              i.fa-regular.fa-comment-dots
-              s_rp_count
-                | [##_article_rep_rp_cnt_##]
+          .article-meta-row.flex.items-center.justify-between.gap-3.text-sm.text-slate-300.flex-wrap
+            .flex.items-center.gap-4
+              span.flex.items-center.gap-1
+                i.fa-regular.fa-user
+                | [##_article_rep_author_##]
+              span.flex.items-center.gap-1
+                i.fa-regular.fa-calendar
+                | [##_article_rep_date_##]
+              span.flex.items-center.gap-1
+                i.fa-regular.fa-comment-dots
+                s_rp_count
+                  | [##_article_rep_rp_cnt_##]
+            a.admin-edit-source.hidden(href="[##_s_ad_m_link_##]")
+            a.admin-delete-source.hidden(onclick="[##_s_ad_d_onclick_##]" href="#")
 
-      div(class="p-6 sm:p-12")
+      .p-6(class="sm:p-12")
         //- Post Content
-        div.flex.flex-col(class="lg:flex-row lg:items-start lg:gap-12")
-          div.order-2.article-content.tt_article_useless_p_margin.flex-1.min-w-0(class="lg:order-1")
-            | [##_article_rep_desc_##]
-
-          //- TOC container
-          aside#toc-container.order-1.w-full.mb-8.shrink-0.border-l.border-slate-200.pl-4.bg-slate-50.rounded-lg.p-4(class="lg:order-2 lg:w-64 lg:sticky lg:top-8 lg:mb-0 dark:border-slate-700 dark:bg-slate-800/20 lg:bg-transparent lg:dark:bg-transparent lg:rounded-none lg:p-0")
-            div.text-sm.font-bold.text-slate-500.uppercase.tracking-widest.mb-4(class="dark:text-slate-400") On this page
-            nav#toc.text-sm.flex.flex-col.space-y-2.overflow-y-auto(class="max-h-[50vh] lg:max-h-[80vh]")
+        .article-content.tt_article_useless_p_margin
+          | [##_article_rep_desc_##]
 
         //- Tags
         s_tag_label
-          div.mt-16.flex.flex-wrap.gap-2
+          .mt-16.flex.flex-wrap.gap-2
             | [##_tag_label_rep_##]
 
         //- Navigation to List
-        div.mt-12.flex.justify-center
+        .mt-12.flex.justify-center
           button.flex.items-center.gap-2.px-8.py-4.bg-white.border.border-slate-200.text-slate-600.rounded-full.font-bold.transition-colors.shadow-sm(onclick="location.href='/'" class="hover:bg-slate-50 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-700")
             i.fa-solid.fa-arrow-left
             | 목록으로 돌아가기
+
+      //- Floating TOC (chat-style FAB)
+      button#toc-toggle(type="button" aria-label="목차 열기" aria-controls="toc-container" aria-expanded="false" class="fixed right-4 bottom-4 sm:right-6 sm:bottom-6 z-50 w-12 h-12 rounded-full bg-indigo-600 text-white shadow-lg flex items-center justify-center transition hover:bg-indigo-500 dark:bg-indigo-500 dark:hover:bg-indigo-400")
+        i.fa-solid.fa-list-ul
+
+      aside#toc-container(class="fixed right-4 bottom-20 sm:right-6 sm:bottom-24 z-50 w-72 sm:w-80 max-w-[92vw] max-h-[62vh] bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-2xl p-4 opacity-0 translate-y-2 pointer-events-none transition-all duration-200")
+        .flex.items-center.justify-between.mb-3
+          .text-xs.font-bold.text-slate-500.uppercase.tracking-widest(class="dark:text-slate-400") TOC
+          button#toc-close(type="button" aria-label="목차 닫기" class="w-7 h-7 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-700")
+            i.fa-solid.fa-xmark
+        nav#toc.text-xs.flex.flex-col.overflow-y-auto(class="space-y-1.5 max-h-[48vh]")
