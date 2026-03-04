@@ -7,5 +7,10 @@ dist
 # Configuration
 tidory.config.js
 
+# Local-only docs
+Agent.md
+design.txt
+tidory_wiki/
+
 .idea
 .vscode
