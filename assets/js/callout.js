@@ -1,56 +1,80 @@
 export default function initCallouts() {
   const blockquotes = document.querySelectorAll('.tt_article_useless_p_margin blockquote');
-  
+
+  const normalizeType = (type) => {
+    const key = (type || '').toLowerCase();
+    if (key === 'warn') return 'warning';
+    if (key === 'danger') return 'danger';
+    if (key === 'info') return 'info';
+    if (key === 'note') return 'note';
+    return key || 'quote';
+  };
+
+  const iconMap = {
+    info: 'fa-info-circle',
+    note: 'fa-note-sticky',
+    warning: 'fa-exclamation-triangle',
+    danger: 'fa-bolt',
+    error: 'fa-times-circle',
+    success: 'fa-check-circle',
+    quote: 'fa-quote-left'
+  };
+
+  const typeLabels = {
+    info: 'Information',
+    warning: 'Warning',
+    danger: 'Danger',
+    note: 'Note',
+    error: 'Error',
+    success: 'Success',
+    quote: 'Quote'
+  };
+
   blockquotes.forEach(quote => {
-    const firstChild = quote.firstElementChild;
-    // Tistory wraps texts in <p> tag inside blockquote
-    if (!firstChild || firstChild.tagName !== 'P') return;
-    
-    const html = firstChild.innerHTML;
-    // Match [!type] and optional title, and optional rest of the content
-    const match = html.match(/^\[!(\w+)\](.*?)(?:<br>|<\/p><p>)([\s\S]*)$/i) || html.match(/^\[!(\w+)\](.*)$/i);
-    
-    if (match) {
-      const type = match[1].toLowerCase();
-      const title = match[2] ? match[2].trim() : type;
-      let rest = match[3] || '';
-      
-      // If there are remaining <p> tags, gather them
-      if (!match[3]) {
-        const pTags = Array.from(quote.querySelectorAll('p')).slice(1);
-        if (pTags.length > 0) {
-          rest = pTags.map(p => p.outerHTML).join('');
-          pTags.forEach(p => p.remove());
-        }
+    const paragraphs = Array.from(quote.querySelectorAll('p'));
+    const first = paragraphs[0] || quote;
+    const firstText = (first.textContent || '').trim();
+    const markerMatch = firstText.match(/^\s*\\?\[\s*!(\w+)\s*\]\\?\s*/i);
+
+    let type = 'quote';
+    let title = '';
+    let bodyHtml = '';
+
+    if (markerMatch) {
+      type = normalizeType(markerMatch[1]);
+      const markerLineMatch = (first.innerHTML || '').match(/^\s*\\?\[\s*!(\w+)\s*\]\\?(?:&nbsp;|\s)*(.*?)(?:<br\s*\/?>|$)/i);
+      const customTitle = (markerLineMatch?.[2] || '').replace(/&nbsp;/g, ' ').trim();
+      title = customTitle || (typeLabels[type] || type);
+
+      const restInFirst = (first.innerHTML || '')
+        .replace(/^\s*\\?\[\s*!\w+\s*\]\\?(?:&nbsp;|\s|<br\s*\/?>)*/i, '')
+        .trim();
+      if (restInFirst) {
+        bodyHtml += `<p>${restInFirst}</p>`;
       }
-      
-      quote.classList.add('callout', `callout-${type}`);
-      // Remove default blockquote classes
-      quote.classList.remove('italic', 'bg-zinc-50', 'dark:bg-zinc-800/50', 'border-zinc-300', 'dark:border-zinc-600', 'my-6', 'pl-4');
-      
-      // Select icons
-      const icons = {
-        info: 'fa-info-circle',
-        note: 'fa-pencil-alt',
-        tip: 'fa-lightbulb',
-        warning: 'fa-exclamation-triangle',
-        danger: 'fa-bolt',
-        error: 'fa-times-circle',
-        success: 'fa-check-circle',
-        quote: 'fa-quote-left'
-      };
-      
-      const iconClass = icons[type] || 'fa-info-circle';
-      
-      quote.innerHTML = `
-        <div class="callout-title font-bold flex items-center mb-2">
-          <i class="fa-solid ${iconClass} mr-2"></i>
-          <span class="capitalize">${title || type}</span>
-        </div>
-        <div class="callout-content text-sm leading-relaxed">
-          ${rest}
-        </div>
-      `;
+
+      const others = paragraphs.length > 0
+        ? paragraphs.slice(1).map(p => p.outerHTML).join('')
+        : '';
+      bodyHtml += others;
+    } else {
+      bodyHtml = quote.innerHTML;
     }
+
+    quote.classList.add('callout', `callout-${type}`);
+
+    if (type === 'quote') {
+      quote.innerHTML = `<div class="callout-content">${bodyHtml}</div>`;
+      return;
+    }
+
+    const iconClass = iconMap[type] || iconMap.info;
+    quote.innerHTML = `
+      <div class="callout-title">
+        <i class="fa-solid ${iconClass}"></i>
+        <span class="capitalize">${title || type}</span>
+      </div>
+      <div class="callout-content">${bodyHtml}</div>
+    `;
   });
 }

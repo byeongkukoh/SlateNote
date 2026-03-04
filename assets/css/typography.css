@@ -115,8 +115,104 @@
   .dark .tt_article_useless_p_margin ul > li::marker {
     color: rgb(129 140 248);
   }
-  .tt_article_useless_p_margin blockquote {
-    @apply border-l-4 border-zinc-300 dark:border-zinc-600 pl-4 py-2 my-6 text-zinc-600 dark:text-zinc-400 bg-zinc-50 dark:bg-zinc-800/50 rounded-r-md;
+  .tt_article_useless_p_margin blockquote,
+  .tt_article_useless_p_margin blockquote[data-ke-style],
+  #tt-body-page .tt_article_useless_p_margin blockquote {
+    margin: 1.5rem 0 !important;
+    padding: 1rem 1.25rem !important;
+    border: 1px solid rgb(203 213 225) !important;
+    border-left-width: 1px !important;
+    border-radius: 0.75rem !important;
+    background: rgb(248 250 252) !important;
+    color: rgb(51 65 85) !important;
+    font-size: 1rem !important;
+    line-height: 1.75rem !important;
+    box-shadow: 0 1px 2px 0 rgb(15 23 42 / 0.06) !important;
+    text-align: left !important;
+  }
+  .tt_article_useless_p_margin blockquote p,
+  .tt_article_useless_p_margin blockquote[data-ke-style] p {
+    text-align: left !important;
+  }
+  .dark .tt_article_useless_p_margin blockquote,
+  .dark .tt_article_useless_p_margin blockquote[data-ke-style],
+  .dark #tt-body-page .tt_article_useless_p_margin blockquote {
+    border-color: rgb(51 65 85) !important;
+    background: rgb(30 41 59 / 0.7) !important;
+    color: rgb(226 232 240) !important;
+  }
+  .tt_article_useless_p_margin blockquote::before,
+  .tt_article_useless_p_margin blockquote::after,
+  .tt_article_useless_p_margin blockquote[data-ke-style]::before,
+  .tt_article_useless_p_margin blockquote[data-ke-style]::after {
+    content: none !important;
+    display: none !important;
+  }
+  .tt_article_useless_p_margin blockquote p:last-child {
+    margin-bottom: 0 !important;
+  }
+  .tt_article_useless_p_margin blockquote.callout .callout-title {
+    margin-bottom: 0.5rem !important;
+    font-size: 0.875rem !important;
+    font-weight: 700 !important;
+    line-height: 1.4 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+  }
+  .tt_article_useless_p_margin blockquote.callout .callout-title > i:first-child {
+    margin-right: 0 !important;
+    flex-shrink: 0 !important;
+    width: 1rem !important;
+    text-align: center !important;
+  }
+  .tt_article_useless_p_margin blockquote.callout .callout-content {
+    font-size: 1rem !important;
+    line-height: 1.75rem !important;
+  }
+  .tt_article_useless_p_margin blockquote.callout-info {
+    border-color: rgb(147 197 253) !important;
+    background: rgb(239 246 255) !important;
+  }
+  .tt_article_useless_p_margin blockquote.callout-info .callout-title {
+    color: rgb(29 78 216) !important;
+  }
+  .tt_article_useless_p_margin blockquote.callout-warning {
+    border-color: rgb(252 211 77) !important;
+    background: rgb(255 251 235) !important;
+  }
+  .tt_article_useless_p_margin blockquote.callout-warning .callout-title {
+    color: rgb(180 83 9) !important;
+  }
+  .tt_article_useless_p_margin blockquote.callout-danger {
+    border-color: rgb(252 165 165) !important;
+    background: rgb(254 242 242) !important;
+  }
+  .tt_article_useless_p_margin blockquote.callout-danger .callout-title {
+    color: rgb(185 28 28) !important;
+  }
+  .tt_article_useless_p_margin blockquote.callout-note {
+    border-color: rgb(165 180 252) !important;
+    background: rgb(238 242 255) !important;
+  }
+  .tt_article_useless_p_margin blockquote.callout-note .callout-title {
+    color: rgb(67 56 202) !important;
+  }
+  .dark .tt_article_useless_p_margin blockquote.callout-info {
+    border-color: rgb(59 130 246) !important;
+    background: rgb(30 58 138 / 0.25) !important;
+  }
+  .dark .tt_article_useless_p_margin blockquote.callout-warning {
+    border-color: rgb(245 158 11) !important;
+    background: rgb(120 53 15 / 0.25) !important;
+  }
+  .dark .tt_article_useless_p_margin blockquote.callout-danger {
+    border-color: rgb(239 68 68) !important;
+    background: rgb(127 29 29 / 0.28) !important;
+  }
+  .dark .tt_article_useless_p_margin blockquote.callout-note {
+    border-color: rgb(99 102 241) !important;
+    background: rgb(55 48 163 / 0.25) !important;
   }
   .tt_article_useless_p_margin img, 
   .tt_article_useless_p_margin figure {
