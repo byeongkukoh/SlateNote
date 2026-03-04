@@ -14,6 +14,12 @@ export default function initTOC() {
     tocWrapper.classList.toggle('opacity-100', open);
     tocWrapper.classList.toggle('translate-y-0', open);
     tocWrapper.classList.toggle('pointer-events-auto', open);
+    tocWrapper.setAttribute('aria-hidden', open ? 'false' : 'true');
+    if (open) {
+      tocWrapper.removeAttribute('inert');
+    } else {
+      tocWrapper.setAttribute('inert', '');
+    }
     tocToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
   };
 

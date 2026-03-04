@@ -60,7 +60,7 @@ export default function initCodeBlocks() {
     wrapper.className = 'code-block-wrapper my-12 rounded-xl overflow-hidden shadow-lg bg-[#1e1e1e] border border-zinc-700/50';
     // Header
     const header = document.createElement('div');
-    header.className = 'code-block-header flex items-center justify-between px-5 py-4 bg-[#252526] border-b border-zinc-700/50';
+    header.className = 'code-block-header flex items-center justify-between px-5 py-5 bg-[#252526] border-b border-zinc-700/50';
     // Left section: Mac OS dots + Language name
     const leftSection = document.createElement('div');
     leftSection.className = 'flex items-center gap-4';
@@ -76,16 +76,58 @@ export default function initCodeBlocks() {
     
     // Language label
     const label = document.createElement('div');
-    label.className = 'text-sm text-zinc-300 font-mono tracking-wider font-bold select-none';
+    label.className = 'text-sm text-zinc-300 font-mono tracking-wider font-bold leading-none py-1 select-none';
     label.innerText = lang.toUpperCase() || 'TEXT';
     
     leftSection.appendChild(dots);
     leftSection.appendChild(label);
     
-    // Right section (Empty for now, could be Copy button)
     const rightSection = document.createElement('div');
-    rightSection.className = 'text-xs text-zinc-500 font-mono select-none';
-    // rightSection.innerText = 'Copy';
+    const copyButton = document.createElement('button');
+    copyButton.type = 'button';
+    copyButton.className = 'inline-flex items-center gap-1 rounded-md bg-zinc-700/45 px-2.5 py-1.5 text-xs font-semibold text-zinc-300 transition-colors hover:bg-zinc-600/70 hover:text-zinc-100';
+    const copyIcon = document.createElement('i');
+    copyIcon.className = 'fa-regular fa-copy';
+    const copyText = document.createElement('span');
+    copyText.textContent = '복사';
+    copyButton.appendChild(copyIcon);
+    copyButton.appendChild(copyText);
+    let resetTimer = null;
+    copyButton.addEventListener('click', async () => {
+      const codeText = code.innerText || code.textContent || '';
+      if (!codeText) return;
+
+      try {
+        await navigator.clipboard.writeText(codeText);
+      } catch {
+        const scrollX = window.scrollX;
+        const scrollY = window.scrollY;
+        const temp = document.createElement('textarea');
+        temp.value = codeText;
+        temp.setAttribute('readonly', '');
+        temp.style.position = 'fixed';
+        temp.style.top = '0';
+        temp.style.left = '0';
+        temp.style.opacity = '0';
+        temp.style.pointerEvents = 'none';
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand('copy');
+        document.body.removeChild(temp);
+        window.scrollTo(scrollX, scrollY);
+      }
+
+      if (resetTimer) {
+        clearTimeout(resetTimer);
+      }
+      copyIcon.className = 'fa-solid fa-check';
+      copyText.textContent = '복사됨';
+      resetTimer = setTimeout(() => {
+        copyIcon.className = 'fa-regular fa-copy';
+        copyText.textContent = '복사';
+      }, 1200);
+    });
+    rightSection.appendChild(copyButton);
     
     header.appendChild(leftSection);
     header.appendChild(rightSection);

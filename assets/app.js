@@ -18,8 +18,7 @@ import initCallouts from './js/callout.js'
 import initTOC from './js/toc.js'
 import initPostListPreview from './js/postlist.js'
 import initProfileLinks from './js/profile-links.js'
-import initAdminActions from './js/admin-actions.js'
-import initArticleScrollbar from './js/article-scrollbar.js'
+import initHeaderControls from './js/header-controls.js'
 document.addEventListener('DOMContentLoaded', () => {
   initThemeToggle()
   initCodeBlocks()
@@ -27,6 +26,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initTOC()
   initPostListPreview()
   initProfileLinks()
-  initAdminActions()
-  initArticleScrollbar()
+  initHeaderControls()
 })

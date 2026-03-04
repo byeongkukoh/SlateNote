@@ -61,52 +61,9 @@
   }
 
   .paging .selected {
-    @apply bg-indigo-600 text-white border-indigo-600 dark:bg-indigo-500 dark:border-indigo-500 dark:text-slate-50;
+    @apply flex items-center justify-center w-full h-full rounded-lg bg-indigo-600 text-white dark:bg-indigo-500 dark:text-slate-50;
   }
 
-  .article-scroll-pane {
-    scrollbar-width: thin;
-    scrollbar-color: transparent transparent;
-    scrollbar-gutter: stable;
-  }
-
-  .article-scroll-pane::-webkit-scrollbar {
-    width: 9px;
-    height: 9px;
-  }
-
-  .article-scroll-pane::-webkit-scrollbar-thumb {
-    background-color: transparent;
-    border-radius: 9999px;
-    border: 2px solid transparent;
-    background-clip: padding-box;
-  }
-
-  .article-scroll-pane::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  .article-scroll-pane.is-scrolling,
-  .article-scroll-pane:hover,
-  .article-scroll-pane:focus-within {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(148, 163, 184, 0.9) transparent;
-  }
-
-  .article-scroll-pane.is-scrolling::-webkit-scrollbar,
-  .article-scroll-pane:hover::-webkit-scrollbar,
-  .article-scroll-pane:focus-within::-webkit-scrollbar {
-    width: 9px;
-  }
-
-  .article-scroll-pane.is-scrolling::-webkit-scrollbar-thumb,
-  .article-scroll-pane:hover::-webkit-scrollbar-thumb,
-  .article-scroll-pane:focus-within::-webkit-scrollbar-thumb {
-    background-color: rgba(148, 163, 184, 0.9);
-    border-radius: 9999px;
-    border: 2px solid transparent;
-    background-clip: padding-box;
-  }
 }
 @import './css/typography.css';
 
@@ -117,6 +74,11 @@
 a,
 button {
   @apply pointer-events-auto !important;
+}
+
+#toc-container.pointer-events-none,
+#toc-container.pointer-events-none * {
+  pointer-events: none !important;
 }
 
 @layer utilities {

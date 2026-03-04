@@ -1,6 +1,6 @@
 s_article_rep
   s_permalink_article_rep
-    .article-scroll-pane.animate-in.fade-in.slide-in-from-bottom-4.duration-500.bg-white.rounded-2xl.shadow-sm.border.border-slate-100.overflow-hidden(class="dark:bg-slate-800 dark:border-slate-700 lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto lg:overscroll-contain")
+    .animate-in.fade-in.slide-in-from-bottom-4.duration-500.bg-white.rounded-2xl.shadow-sm.border.border-slate-100.overflow-hidden(class="dark:bg-slate-800 dark:border-slate-700")
 
       //- Post Header
       .relative.w-full(class="h-52 sm:h-64 md:h-[340px]")
@@ -25,8 +25,6 @@ s_article_rep
                 i.fa-regular.fa-comment-dots
                 s_rp_count
                   | [##_article_rep_rp_cnt_##]
-            a.admin-edit-source.hidden(href="[##_s_ad_m_link_##]")
-            a.admin-delete-source.hidden(onclick="[##_s_ad_d_onclick_##]" href="#")
 
       .p-6(class="sm:p-12")
         //- Post Content
@@ -40,8 +38,8 @@ s_article_rep
 
         //- Navigation to List
         .mt-12.flex.justify-center
-          button.flex.items-center.gap-2.px-8.py-4.bg-white.border.border-slate-200.text-slate-600.rounded-full.font-bold.transition-colors.shadow-sm(onclick="location.href='/'" class="hover:bg-slate-50 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-700")
-            i.fa-solid.fa-arrow-left
+          button.flex.items-center.gap-2.px-5.bg-white.border.border-slate-200.text-slate-600.rounded-full.text-sm.font-semibold.transition-colors.shadow-sm(onclick="location.href='/'" class="py-2.5 hover:bg-slate-50 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-700")
+            i.fa-solid.fa-arrow-left.text-sm
             | 목록으로 돌아가기
 
       //- Floating TOC (chat-style FAB)
