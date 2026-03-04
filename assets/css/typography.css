@@ -228,11 +228,20 @@
     margin-bottom: 0 !important;
     padding: 1rem 1.25rem !important;
     box-sizing: border-box;
+    background: transparent !important;
+    color: rgb(31 41 55) !important;
   }
   .code-block-wrapper pre code,
   .code-block-wrapper .hljs {
     display: block;
     width: 100%;
+    color: rgb(31 41 55) !important;
+    background: transparent !important;
+  }
+  .dark .code-block-wrapper pre,
+  .dark .code-block-wrapper pre code,
+  .dark .code-block-wrapper .hljs {
+    color: rgb(229 231 235) !important;
   }
   .code-block-wrapper {
     margin-top: 3rem !important;

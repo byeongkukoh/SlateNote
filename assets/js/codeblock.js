@@ -57,35 +57,24 @@ export default function initCodeBlocks() {
     
     // Wrap pre in a container
     const wrapper = document.createElement('div');
-    wrapper.className = 'code-block-wrapper my-12 rounded-xl overflow-hidden shadow-lg bg-[#1e1e1e] border border-zinc-700/50';
+    wrapper.className = 'code-block-wrapper my-12 rounded-xl overflow-hidden shadow-md bg-white border border-zinc-200 dark:bg-zinc-900 dark:border-zinc-700';
     // Header
     const header = document.createElement('div');
-    header.className = 'code-block-header flex items-center justify-between px-5 py-5 bg-[#252526] border-b border-zinc-700/50';
-    // Left section: Mac OS dots + Language name
+    header.className = 'code-block-header flex items-center justify-between px-4 py-3 bg-zinc-50 border-b border-zinc-200 dark:bg-zinc-800 dark:border-zinc-700';
     const leftSection = document.createElement('div');
-    leftSection.className = 'flex items-center gap-4';
-    
-    // Mac OS like dots
-    const dots = document.createElement('div');
-    dots.className = 'flex space-x-2 items-center opacity-80';
-    dots.innerHTML = `
-      <div class="w-3 h-3 rounded-full bg-[#ff5f56] shadow-sm"></div>
-      <div class="w-3 h-3 rounded-full bg-[#ffbd2e] shadow-sm"></div>
-      <div class="w-3 h-3 rounded-full bg-[#27c93f] shadow-sm"></div>
-    `;
+    leftSection.className = 'flex items-center';
     
     // Language label
     const label = document.createElement('div');
-    label.className = 'text-sm text-zinc-300 font-mono tracking-wider font-bold leading-none py-1 select-none';
+    label.className = 'text-sm text-zinc-700 dark:text-zinc-200 font-mono font-semibold leading-none select-none';
     label.innerText = lang.toUpperCase() || 'TEXT';
-    
-    leftSection.appendChild(dots);
+
     leftSection.appendChild(label);
     
     const rightSection = document.createElement('div');
     const copyButton = document.createElement('button');
     copyButton.type = 'button';
-    copyButton.className = 'inline-flex items-center gap-1 rounded-md bg-zinc-700/45 px-2.5 py-1.5 text-xs font-semibold text-zinc-300 transition-colors hover:bg-zinc-600/70 hover:text-zinc-100';
+    copyButton.className = 'inline-flex items-center gap-1 rounded-md bg-zinc-100 px-2.5 py-1.5 text-xs font-semibold text-zinc-600 transition-colors hover:bg-zinc-200 hover:text-zinc-800 dark:bg-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-600 dark:hover:text-white';
     const copyIcon = document.createElement('i');
     copyIcon.className = 'fa-regular fa-copy';
     const copyText = document.createElement('span');
