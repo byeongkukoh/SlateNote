@@ -1,6 +1,27 @@
 export default function initCallouts() {
   const blockquotes = document.querySelectorAll('.tt_article_useless_p_margin blockquote');
 
+  const escapeRegex = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+  const promoteDashParagraphToList = (paragraph) => {
+    const lines = (paragraph.innerHTML || '')
+      .split(/<br\s*\/?>/i)
+      .map((line) => line.replace(/&nbsp;/g, ' ').trim())
+      .filter(Boolean);
+
+    if (lines.length < 2) return;
+    if (!lines.every((line) => /^[-*+]\s+/.test(line))) return;
+
+    const ul = document.createElement('ul');
+    lines.forEach((line) => {
+      const li = document.createElement('li');
+      li.innerHTML = line.replace(/^[-*+]\s+/, '').trim();
+      ul.appendChild(li);
+    });
+
+    paragraph.replaceWith(ul);
+  };
+
   const normalizeType = (type) => {
     const key = (type || '').toLowerCase();
     if (key === 'warn') return 'warning';
@@ -31,8 +52,9 @@ export default function initCallouts() {
   };
 
   blockquotes.forEach(quote => {
-    const paragraphs = Array.from(quote.querySelectorAll('p'));
-    const first = paragraphs[0] || quote;
+    const workingQuote = quote.cloneNode(true);
+    const paragraphs = Array.from(workingQuote.querySelectorAll('p'));
+    const first = paragraphs[0] || workingQuote;
     const firstText = (first.textContent || '').trim();
     const markerMatch = firstText.match(/^\s*\\?\[\s*!(\w+)\s*\]\\?\s*/i);
 
@@ -46,19 +68,30 @@ export default function initCallouts() {
       const customTitle = (markerLineMatch?.[2] || '').replace(/&nbsp;/g, ' ').trim();
       title = customTitle || (typeLabels[type] || type);
 
-      const restInFirst = (first.innerHTML || '')
-        .replace(/^\s*\\?\[\s*!\w+\s*\]\\?(?:&nbsp;|\s|<br\s*\/?>)*/i, '')
+      let cleanedFirst = (first.innerHTML || '')
+        .replace(/^\s*\\?\[\s*!\w+\s*\]\\?(?:&nbsp;|\s)*/i, '')
         .trim();
-      if (restInFirst) {
-        bodyHtml += `<p>${restInFirst}</p>`;
+
+      if (customTitle) {
+        const titleAtStart = new RegExp(`^${escapeRegex(customTitle)}(?:&nbsp;|\\s)*(?:<br\\s*\\/?>)?`, 'i');
+        cleanedFirst = cleanedFirst.replace(titleAtStart, '').trim();
       }
 
-      const others = paragraphs.length > 0
-        ? paragraphs.slice(1).map(p => p.outerHTML).join('')
-        : '';
-      bodyHtml += others;
+      if (first !== workingQuote) {
+        if (cleanedFirst) {
+          first.innerHTML = cleanedFirst;
+        } else {
+          first.remove();
+        }
+      } else {
+        workingQuote.innerHTML = cleanedFirst;
+      }
+
+      Array.from(workingQuote.querySelectorAll('p')).forEach(promoteDashParagraphToList);
+      bodyHtml = workingQuote.innerHTML;
     } else {
-      bodyHtml = quote.innerHTML;
+      Array.from(workingQuote.querySelectorAll('p')).forEach(promoteDashParagraphToList);
+      bodyHtml = workingQuote.innerHTML;
     }
 
     quote.classList.add('callout', `callout-${type}`);
@@ -72,7 +105,7 @@ export default function initCallouts() {
     quote.innerHTML = `
       <div class="callout-title">
         <i class="fa-solid ${iconClass}"></i>
-        <span class="capitalize">${title || type}</span>
+        <span>${title || type}</span>
       </div>
       <div class="callout-content">${bodyHtml}</div>
     `;

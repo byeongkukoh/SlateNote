@@ -24,8 +24,20 @@ export default function initTOC() {
   };
 
   setOpen(false);
+
+  const excludedHeadingContainers = [
+    '.another_category',
+    '.article_related',
+    '.area_related',
+    '.related-articles',
+    '.tt-related-articles'
+  ];
+
+  const isInExcludedContainer = (heading) =>
+    excludedHeadingContainers.some((selector) => heading.closest(selector));
   
-  const headings = Array.from(content.querySelectorAll('h1, h2, h3, h4, h5, h6'));
+  const headings = Array.from(content.querySelectorAll('h2, h3, h4'))
+    .filter((heading) => !isInExcludedContainer(heading));
   if (headings.length === 0) {
     tocWrapper.style.display = 'none';
     tocToggle.style.display = 'none';

@@ -1,3 +1,4 @@
+@import './css/typography.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -21,7 +22,22 @@
 
   .category-list .category_list > li > a,
   .category-list .sub_category_list > li > a {
-    @apply flex items-center justify-between py-2 px-3 rounded-lg text-sm text-slate-600 transition-colors hover:bg-slate-50 hover:text-indigo-600 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-indigo-400;
+    @apply flex items-center py-2 px-3 rounded-lg text-sm text-slate-600 transition-colors hover:bg-slate-50 hover:text-indigo-600 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-indigo-400;
+    gap: 0.25rem;
+  }
+
+  .category-list .category_list > li > a .c_cnt,
+  .category-list .sub_category_list > li > a .c_cnt {
+    margin-left: auto;
+  }
+
+  .category-list .category_list > li > a .c_cnt + img,
+  .category-list .sub_category_list > li > a .c_cnt + img,
+  .category-list .category_list > li > a .c_cnt + .ico_new,
+  .category-list .sub_category_list > li > a .c_cnt + .ico_new,
+  .category-list .category_list > li > a .c_cnt + .new,
+  .category-list .sub_category_list > li > a .c_cnt + .new {
+    margin-left: 0.25rem;
   }
 
   .category-list .sub_category_list {
@@ -49,8 +65,6 @@
   }
 
 }
-@import './css/typography.css';
-
 .menu_toolbar {
   @apply hidden;
 }
