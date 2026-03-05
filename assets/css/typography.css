@@ -4,38 +4,50 @@
   }
 
   .tt_article_useless_p_margin h1 {
-    @apply text-3xl font-extrabold pb-3 border-b border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-zinc-50 leading-tight;
+    @apply text-3xl font-bold pb-3 border-b border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-zinc-50 leading-tight;
     margin-top: 2rem !important;
     margin-bottom: 2rem !important;
+    font-size: 24px !important;
+    font-weight: 700 !important;
   }
   .tt_article_useless_p_margin h2 {
     @apply text-2xl font-bold text-zinc-900 dark:text-zinc-50 leading-snug;
     margin-top: 1.5rem !important;
     margin-bottom: 1.5rem !important;
+    font-size: 24px !important;
+    font-weight: 700 !important;
   }
   .tt_article_useless_p_margin h3 {
-    @apply text-xl font-semibold text-zinc-800 dark:text-zinc-100 leading-snug;
+    @apply text-xl font-bold text-zinc-800 dark:text-zinc-100 leading-snug;
     margin-top: 1.25rem !important;
     margin-bottom: 1.25rem !important;
+    font-size: 22px !important;
+    font-weight: 700 !important;
   }
   .tt_article_useless_p_margin h4 {
-    @apply text-lg font-medium text-zinc-800 dark:text-zinc-100;
+    @apply text-lg font-bold text-zinc-800 dark:text-zinc-100;
     margin-top: 1rem !important;
     margin-bottom: 1rem !important;
+    font-size: 20px !important;
+    font-weight: 700 !important;
   }
   .tt_article_useless_p_margin h5 {
-    @apply text-base font-medium text-zinc-800 dark:text-zinc-100;
+    @apply text-base font-bold text-zinc-800 dark:text-zinc-100;
     margin-top: 1rem !important;
     margin-bottom: 1rem !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
   }
   .tt_article_useless_p_margin h6 {
     @apply text-sm font-bold text-zinc-600 dark:text-zinc-400 uppercase tracking-wider;
     margin-top: 1rem !important;
     margin-bottom: 1rem !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
   }
   .tt_article_useless_p_margin p {
     @apply leading-8 text-zinc-700 dark:text-zinc-300;
-    margin-bottom: 1.5rem !important;
+    margin-bottom: 0.75rem !important;
   }
   .tt_article_useless_p_margin a {
     @apply text-blue-600 dark:text-blue-400 underline;
@@ -52,13 +64,13 @@
   }
   .tt_article_useless_p_margin ul {
     @apply list-disc list-outside text-zinc-700 dark:text-zinc-300;
-    margin-bottom: 1.5rem !important;
+    margin-bottom: 0.75rem !important;
     margin-left: 2rem !important; /* pl-8 대신 margin-left로 확실히 들여쓰기 */
     padding-left: 0.5rem !important;
   }
   .tt_article_useless_p_margin ol {
     @apply list-none text-zinc-700 dark:text-zinc-300;
-    margin-bottom: 1.5rem !important;
+    margin-bottom: 0.75rem !important;
     margin-left: 1rem !important; /* 들여쓰기 */
     padding-left: 0 !important;
     counter-reset: ol-counter;
@@ -87,7 +99,7 @@
     @apply bg-indigo-500;
   }
   .tt_article_useless_p_margin li > p {
-    @apply mb-2;
+    margin-bottom: 0.75rem !important;
   }
   .tt_article_useless_p_margin li > ul,
   .tt_article_useless_p_margin li > ol {
@@ -153,9 +165,9 @@
   }
   .tt_article_useless_p_margin blockquote.callout .callout-title {
     margin-bottom: 0.5rem !important;
-    font-size: 0.875rem !important;
+    font-size: 1rem !important;
     font-weight: 700 !important;
-    line-height: 1.4 !important;
+    line-height: 1.75rem !important;
     display: flex !important;
     align-items: center !important;
     gap: 0.75rem !important;
@@ -220,8 +232,8 @@
   }
   .tt_article_useless_p_margin pre {
     @apply rounded-lg overflow-x-auto text-sm bg-zinc-900 text-zinc-50 p-4 font-mono shadow-md;
-    margin-top: 3rem !important;
-    margin-bottom: 3rem !important;
+    margin-top: 1.75rem !important;
+    margin-bottom: 1.75rem !important;
   }
   .code-block-wrapper pre {
     margin-top: 0 !important;
@@ -244,8 +256,8 @@
     color: rgb(229 231 235) !important;
   }
   .code-block-wrapper {
-    margin-top: 3rem !important;
-    margin-bottom: 3rem !important;
+    margin-top: 1.75rem !important;
+    margin-bottom: 1.75rem !important;
   }
   .tt_article_useless_p_margin code {
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
