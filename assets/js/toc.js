@@ -25,7 +25,7 @@ export default function initTOC() {
 
   setOpen(false);
   
-  const headings = Array.from(content.querySelectorAll('h1, h2, h3, h4, h5, h6'));
+  const headings = Array.from(content.querySelectorAll('h2, h3, h4'));
   if (headings.length === 0) {
     tocWrapper.style.display = 'none';
     tocToggle.style.display = 'none';

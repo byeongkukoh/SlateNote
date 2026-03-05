@@ -15,6 +15,7 @@ import './app.css'
 import initThemeToggle from './js/theme.js'
 import initCodeBlocks from './js/codeblock.js'
 import initCallouts from './js/callout.js'
+import initHeadingNormalize from './js/heading-normalize.js'
 import initTOC from './js/toc.js'
 import initPostListPreview from './js/postlist.js'
 import initProfileLinks from './js/profile-links.js'
@@ -23,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initThemeToggle()
   initCodeBlocks()
   initCallouts()
+  initHeadingNormalize()
   initTOC()
   initPostListPreview()
   initProfileLinks()
