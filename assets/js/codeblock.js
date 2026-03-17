@@ -35,24 +35,95 @@ hljs.registerLanguage('kotlin', kotlin);
 hljs.registerLanguage('swift', swift);
 hljs.registerLanguage('yaml', yaml);
 
+const LANGUAGE_ALIASES = {
+  cplusplus: 'cpp',
+  'c++': 'cpp',
+  cs: 'csharp',
+  htm: 'html',
+  js: 'javascript',
+  jsx: 'javascript',
+  md: 'markdown',
+  plaintext: 'text',
+  plain: 'text',
+  py: 'python',
+  rs: 'rust',
+  sh: 'bash',
+  shell: 'bash',
+  text: 'text',
+  ts: 'typescript',
+  tsx: 'typescript',
+  txt: 'text',
+  yml: 'yaml',
+  zsh: 'bash'
+};
+
+const DISPLAY_LABELS = {
+  cpp: 'CPP',
+  csharp: 'C#',
+  text: 'TEXT'
+};
+
+function normalizeLanguage(lang) {
+  if (!lang) return '';
+  const normalized = lang.trim().toLowerCase();
+  return LANGUAGE_ALIASES[normalized] || normalized;
+}
+
+function getDisplayLabel(rawLang, normalizedLang) {
+  const raw = rawLang?.trim();
+  if (raw) {
+    const rawNormalized = raw.toLowerCase();
+    if (DISPLAY_LABELS[rawNormalized]) {
+      return DISPLAY_LABELS[rawNormalized];
+    }
+
+    if (LANGUAGE_ALIASES[rawNormalized] === 'text') {
+      return 'TEXT';
+    }
+
+    return raw.toUpperCase();
+  }
+
+  return DISPLAY_LABELS[normalizedLang] || normalizedLang.toUpperCase() || 'TEXT';
+}
+
+function extractLanguage(code, pre) {
+  const candidates = [
+    ...Array.from(code.classList)
+      .filter(className => className.startsWith('language-') || className.startsWith('lang-'))
+      .map(className => className.replace(/language-|lang-/, '')),
+    ...Array.from(pre.classList).filter(className => !['tt_article_useless_p_margin', 'hljs'].includes(className))
+  ];
+
+  const rawLang = candidates.find(candidate => {
+    const normalized = normalizeLanguage(candidate);
+    return normalized === 'text' || Boolean(hljs.getLanguage(normalized));
+  }) || '';
+
+  return {
+    raw: rawLang,
+    normalized: normalizeLanguage(rawLang)
+  };
+}
+
 export default function initCodeBlocks() {
   const codeBlocks = document.querySelectorAll('.tt_article_useless_p_margin pre > code');
   
   codeBlocks.forEach(code => {
-    // Highlight
-    hljs.highlightElement(code);
-    
     const pre = code.parentElement;
-    
-    // Language extraction
-    // 티스토리는 보통 <pre class="java"><code>...</code> 또는 <code class="language-java"> 형식으로 출력함
-    let lang = '';
-    const codeClass = Array.from(code.classList).find(c => c.startsWith('language-') || c.startsWith('lang-'));
-    if (codeClass) {
-      lang = codeClass.replace(/language-|lang-/, '');
+    const codeText = code.textContent || '';
+    const { raw: rawLang, normalized: normalizedLang } = extractLanguage(code, pre);
+
+    if (normalizedLang && normalizedLang !== 'text' && hljs.getLanguage(normalizedLang)) {
+      const result = hljs.highlight(codeText, {
+        language: normalizedLang,
+        ignoreIllegals: true
+      });
+      code.innerHTML = result.value;
+      code.classList.add('hljs', `language-${normalizedLang}`);
     } else {
-      const preClass = Array.from(pre.classList).find(c => !['tt_article_useless_p_margin'].includes(c));
-      if (preClass) lang = preClass;
+      code.textContent = codeText;
+      code.classList.add('hljs');
     }
     
     // Wrap pre in a container
@@ -67,7 +138,7 @@ export default function initCodeBlocks() {
     // Language label
     const label = document.createElement('div');
     label.className = 'text-sm text-zinc-700 dark:text-zinc-200 font-mono font-semibold leading-none select-none';
-    label.innerText = lang.toUpperCase() || 'TEXT';
+    label.innerText = getDisplayLabel(rawLang, normalizedLang);
 
     leftSection.appendChild(label);
     
